@@ -2,6 +2,7 @@ package com.example;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.amqp.rabbit.connection.ConnectionFactory;
 import org.springframework.cloud.CloudException;
 import org.springframework.cloud.config.java.AbstractCloudConfig;
 import org.springframework.context.annotation.Bean;
@@ -23,5 +24,10 @@ public class CloudConfig extends AbstractCloudConfig {
 			log.warn("Fallback to use StubMailSender", e);
 			return new StubMailSender();
 		}
+	}
+
+	@Bean
+	ConnectionFactory rabbitConnectionFactory() {
+		return connectionFactory().rabbitConnectionFactory();
 	}
 }

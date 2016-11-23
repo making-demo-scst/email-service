@@ -1,0 +1,8 @@
+applications:
+- name: email-svc
+  buildpack: java_buildpack
+  memory: 512m
+  path: target/email-service-0.0.1-SNAPSHOT.jar
+  services:
+  - rabbit-binder # cf create-service cloudamqp lemur rabbit-binder
+  - mailer # cf create-service sendgrid free mailer
